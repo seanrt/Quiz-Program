@@ -235,24 +235,29 @@ mc filein(int *size,int category,int lang) { // This function assigns the questi
  
     for (j=1;j<category;j++) {          // This is skipped if category is 1
         fin >> *size;                   // The size is taken in
-        fin >> temp.cat;                // This skips the category
+        getline(fin,temp.cat,'%'); 
+        getline(fin,temp.cat,'%');      // The category is skipped
+        getline(fin,temp.cat,'%'); 
         getline(fin,temp.cat,'%');      // The description is taken in
 
-        for (i=0;i<((*size)*2);i++) { // All the data for that category is skipped
-            fin >> temp.cat;
+        for (i=0;i<((*size)*3);i++) { // All the data for that category is skipped
+            getline(fin,temp.cat,'%');
         }
     }
     
     fin >> *size;                 // This takes in the number of questions and answers  
-    fin >> temp.cat;              // This skips the category
+    getline(fin,temp.cat,'%'); 
+    getline(fin,temp.cat,'%');    // This skips the category
+    getline(fin,temp.cat,'%'); 
     getline(fin,temp.cat,'%');    // This takes in the description
 
     temp.q=new string[*size];
     temp.a=new string[*size];
 
     for (i=0;i<*size;i++) { // This loop takes in questions        
-        fin >> *(temp.q+i);
-        fin >> *(temp.a+i);
+        getline(fin,temp.cat,'%');
+        getline(fin,*(temp.q+i),'%');
+        getline(fin,*(temp.a+i),'%');
     }
     fin.close();  
 
@@ -271,11 +276,13 @@ string* catsin(int &size, int lang) {
     }
     while( !( fin.eof() ) ) { // This loop finds the number of categories         
         fin >> j;                  
-        fin >> temp2;     
+        getline(fin,temp2,'%'); 
+        getline(fin,temp2,'%'); 
+        getline(fin,temp2,'%');     
         getline(fin,temp2,'%');     
         
-        for (i=0;i<((j)*2);i++) { 
-            fin >> temp2;
+        for (i=0;i<((j)*3);i++) { 
+            getline(fin,temp2,'%'); 
         }
         
         if ( !( fin.eof() ) ) {
@@ -293,12 +300,14 @@ string* catsin(int &size, int lang) {
         fin.open("frenchinput");
     }
     for (i=0;i<size;i++) {  // This loop takes in the categories
-        fin >> j;                  
-        fin >> *(temp+i);     
-        getline(fin,temp2,'%');     
+        fin >> j;                       
+        getline(fin,temp2,'%'); 
+        getline(fin,*(temp+i),'%');     
+        getline(fin,temp2,'%'); 
+        getline(fin,temp2,'%');        
         
-        for (k=0;k<((j)*2);k++) { 
-            fin >> temp2;
+        for (k=0;k<((j)*3);k++) { 
+            getline(fin,temp2,'%'); 
         }   
     }
     fin.close();
