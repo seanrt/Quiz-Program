@@ -195,7 +195,7 @@ void question(string *qq, string *aa, string cat, int q[], int a[], int size, in
     int n, x, c, count=0, cont=1;
     int *flag=makearr(size);
 
-    cout << cat << endl << endl;
+    cout << cat;
 
     for (n=0 ; (n<size) && (cont==1) ; n++) { // Every question is asked as long as the user wants to continue
         for (;;) {
